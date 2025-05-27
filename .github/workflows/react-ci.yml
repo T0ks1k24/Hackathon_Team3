@@ -24,7 +24,7 @@ jobs:
         working-directory: frontend
         
       - name: Run tests
-        run: npm test -- --watchAll-false
+        run: npm test -- --watchAll=false
         working-directory: frontend
 
       - name: Build project
