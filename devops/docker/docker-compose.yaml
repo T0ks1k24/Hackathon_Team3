@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  backend:
+    build: ../backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../backend:/app
+    environment:
+      - DEBUG=1
+
+  frontend:
+    build: ../frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../frontend:/app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  database:
+    image: postgres:latest
+    container_name: database
+    restart: always
+    environment:
+      POSTGRES_DB: database-team3
+      POSTGRES_USER: team3
+      POSTGRES_PASSWORD: password-team3
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+
+  nginx:
+    
+
+volumes:
+  database:
