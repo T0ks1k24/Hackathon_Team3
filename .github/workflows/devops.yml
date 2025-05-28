@@ -18,7 +18,7 @@ jobs:
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.SSH_USER}}
           key: ${{secrets.SSH_PRIVATE_KEY}}
-          source: "DevOps"
+          source: "devops"
           target: "home/ubuntu"
 
       - name: SSH Deploy Command

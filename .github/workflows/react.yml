@@ -2,9 +2,9 @@ name: React CI
 
 on:
   push:
-   branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-and-test:
@@ -13,16 +13,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node_version: '20'
+          node_version: "20"
 
       - name: Install dependencies
         run: npm ci
         working-directory: frontend
-        
+
       - name: Run tests
         run: npm test -- --watchAll=false
         working-directory: frontend
@@ -35,7 +35,7 @@ jobs:
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.SSH_HOST}}
-          username : ${{ secrets.SSH_USER}}
+          username: ${{ secrets.SSH_USER}}
           key: ${{ secrets.SSH_PRIVATE_KEY}}
           source: "frontend/build/*"
           target: "/home/ubuntu/"
