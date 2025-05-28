@@ -19,7 +19,7 @@ jobs:
           username: ${{secrets.SSH_USER}}
           key: ${{secrets.SSH_PRIVATE_KEY}}
           source: "devops"
-          target: "home/ubuntu"
+          target: "/home/ubuntu"
 
       - name: SSH Deploy Command
         uses: appleboy/ssh-action@v1.0.3
