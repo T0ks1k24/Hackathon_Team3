@@ -1,66 +1,65 @@
-/* RegisterPage.css */
-
-.register-container {
+form {
   max-width: 400px;
-  margin: 50px auto;
-  padding: 30px 40px;
-  background: #fff;
+  margin: 40px auto;
+  padding: 30px 20px;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fafafa;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
 }
 
-.register-container h2 {
+h2 {
   text-align: center;
   margin-bottom: 25px;
   color: #333;
-  font-weight: 600;
 }
 
-.register-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.register-form label {
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: #555;
-}
-
-.register-form input {
-  padding: 12px 15px;
-  margin-bottom: 20px;
-  border: 1.5px solid #ddd;
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #bbb;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 15px;
   transition: border-color 0.3s ease;
 }
 
-.register-form input:focus {
-  border-color: #4a90e2;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #007BFF;
   outline: none;
 }
 
-.register-form button {
-  padding: 12px;
-  background-color: #4a90e2;
-  color: white;
-  font-weight: 600;
+button {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #007BFF;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
+  font-size: 17px;
+  color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.register-form button:hover {
-  background-color: #357abd;
+button:hover {
+  background-color: #0056b3;
 }
 
-.error-message {
-  color: #e74c3c;
-  font-size: 14px;
-  margin-bottom: 15px;
-  font-weight: 500;
+p {
   text-align: center;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+p[style*="color: red"] {
+  color: #d9534f;
+}
+
+p[style*="color: green"] {
+  color: #28a745;
 }
