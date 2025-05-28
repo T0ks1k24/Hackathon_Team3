@@ -36,4 +36,4 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "backend/*"
-          target: "/home/ubuntu/backend"
+          target: "/home/ubuntu"
