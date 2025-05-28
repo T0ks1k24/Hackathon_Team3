@@ -24,9 +24,9 @@ jobs:
       - name: SSH Deploy Command
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SERVER_IP }}
+          host: ${{ secrets.SSH_HOST }}
           username: ${{secrets.SSH_USER}}
-          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ~/devops/docker
             docker-compose down
