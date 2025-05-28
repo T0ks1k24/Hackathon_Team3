@@ -28,6 +28,6 @@ jobs:
           username: ${{secrets.SSH_USER}}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd ~/DevOps
+            cd ~/devops/docker
             docker-compose down
             docker-compose up -d --build
