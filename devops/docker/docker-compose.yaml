@@ -7,7 +7,6 @@ services:
       - ../../backend:/app
     environment:
       - DEBUG=1
-      - DATABASE_URL=postgresql://team3:password-team3@database:5432/database-team3
     networks:
       - app-network
     depends_on:
