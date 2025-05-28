@@ -66,4 +66,4 @@ networks:
 
 
 volumes:
-  database:
+  postgres_data:
