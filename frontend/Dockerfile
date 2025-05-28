@@ -1,16 +1,9 @@
-# Base image
-FROM node:18-alpine
+FROM nginx:alpine
 
-# Create app directory
-WORKDIR /app
+# Копіюємо React білд
+COPY build/ /usr/share/nginx/html
 
-# Install dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
+# Копіюємо custom nginx конфіг
+COPY ../nginx/default.conf /etc/nginx/conf.d/default.conf
 
-# Copy app code
-COPY . .
-
-# Start React app
-CMD ["npm", "start"]
+EXPOSE 80
