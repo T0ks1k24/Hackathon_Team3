@@ -1,0 +1,56 @@
+.card {
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background-color: white;
+  font-family: 'Arial', sans-serif;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.photo {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.info {
+  padding: 15px;
+}
+
+.title {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: #222;
+}
+
+.rating {
+  margin: 5px 0;
+  font-weight: 600;
+  color: #f5a623;
+}
+
+.price {
+  margin: 5px 0;
+  font-weight: 700;
+  color: #28a745; 
+}
+
+.stock {
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+.inStock {
+  color: #28a745;
+}
+
+.outOfStock {
+  color: #dc3545;
+}
