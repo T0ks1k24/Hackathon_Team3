@@ -38,3 +38,4 @@ jobs:
           username : ${{ secrets.SSH_USER}}
           key: ${{ secrets.SSH_PRIVATE_KEY}}
           source: "frontend/build/*"
+          target: "/home/ubuntu/frontend"
