@@ -32,7 +32,7 @@ jobs:
       - name: Deploy Backend via SSH
         uses: appleboy/scp-action@v0.1.4
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
           source: "backend/*"
