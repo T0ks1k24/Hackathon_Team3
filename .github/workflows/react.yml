@@ -34,7 +34,7 @@ jobs:
       - name: Deploy to server via SSH
         uses: appleboy/scp-action@v0.1.4
         with:
-          host: ${{ secrets.HOST}}
-          username : ${{ secrets.USER}}
-          key: ${{ secrets.SSH_KEY}}
+          host: ${{ secrets.SSH_HOST}}
+          username : ${{ secrets.SSH_USER}}
+          key: ${{ secrets.SSH_PRIVATE_KEY}}
           source: "frontend/build/*"
