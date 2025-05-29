@@ -1,18 +1,11 @@
-# Base image
-FROM python:3.13.3-slim
+FROM python:3.12-slim
 
-# Work directory inside container
 WORKDIR /app
 
-# Copy and install requirements
-COPY requirements.txt .
+COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy app code
 COPY . .
 
 
-COPY entrypoint.sh .
-RUN chmod +x entrypoint.sh
-
-CMD ["./entrypoint.sh"]
+CMD ["sh", "-c", "python manage.py migrate && gunicorn backend.wsgi:application --bind 0.0.0.0:8000"]

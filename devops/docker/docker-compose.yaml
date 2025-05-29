@@ -5,8 +5,8 @@ services:
     build: ../../backend
     volumes:
       - ../../backend:/app
-    environment:
-      - DEBUG=1
+    env_file:
+      - .env
     networks:
       - app-network
     depends_on:
