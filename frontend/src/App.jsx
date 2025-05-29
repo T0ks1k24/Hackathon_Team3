@@ -51,9 +51,9 @@ function App() {
           <Route
             path="/books"
             element={
-              <PrivateRoute>
+              // <PrivateRoute>
                 <BooksPage />
-              </PrivateRoute>
+              // </PrivateRoute>
             }
           />
 

@@ -1,23 +1,31 @@
+import React from 'react';
 import Card from '../Card/Card.jsx';
 import './CardList.css';
 
 export default function CardList({ books }) {
   if (!books || books.length === 0) {
-    return <p className="empty">No books available</p>;
+    return (
+      <section className="card-list-empty">
+        <p className="empty">No books available</p>
+      </section>
+    );
   }
 
   return (
-<div className="card-list">
-      {books.map((book, index) => (
-        <Card
-          key={book.id || index}
-          photo={book.photo}
-          rating={book.rating}
-          title={book.title}
-          price={book.price}
-          stock={book.stock}
-        />
-      ))}
-    </div>
+    <section className="card-list-section">
+      <ul className="card-list">
+        {books.map((book) => (
+          <li key={book.id} className="card-list-item">
+            <Card
+              photo={book.photo}
+              rating={book.rating}
+              title={book.title}
+              price={book.price}
+              stock={book.stock}
+            />
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

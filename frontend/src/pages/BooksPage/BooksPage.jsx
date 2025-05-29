@@ -27,6 +27,31 @@ export default function BooksPage() {
       price: 21.5,
       stock: 5,
     },
+    {
+      id: 4,
+      photo: 'https://static.yakaboo.ua/media/cloudflare/product/webp/352x340/8/0/80e1685978d971ca0cb2d34339bd437e.jpg',
+      title: 'To Kill a Mockingbird',
+      rating: 4.9,
+      price: 21.5,
+      stock: 5,
+    },
+    {
+      id: 5,
+      photo: 'https://static.yakaboo.ua/media/cloudflare/product/webp/352x340/8/0/80e1685978d971ca0cb2d34339bd437e.jpg',
+      title: 'To Kill a Mockingbird',
+      rating: 4.9,
+      price: 21.5,
+      stock: 5,
+    },
+    {
+      id: 6,
+      photo: 'https://static.yakaboo.ua/media/cloudflare/product/webp/352x340/8/0/80e1685978d971ca0cb2d34339bd437e.jpg',
+      title: 'To Kill a Mockingbird',
+      rating: 4.9,
+      price: 21.5,
+      stock: 5,
+    },
+    
   ];
 
   return (
