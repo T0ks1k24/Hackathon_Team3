@@ -6,25 +6,32 @@
   padding: 0;
 }
 
-body, html {
+html, body {
+  height: 100%;
   font-family: 'Merriweather', serif;
   background: #fdfcf9;
   color: #333;
+}
+
+#root {
   height: 100%;
 }
 
+/* 📦 Основний контейнер */
 .homepage {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* Хедер */
 .homepage-header {
   background: linear-gradient(135deg, #8e8d8a, #c9c5ba);
   color: white;
   padding: 4rem 2rem;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 100%;
 }
 
 .homepage-header h1 {
@@ -37,6 +44,7 @@ body, html {
   font-style: italic;
 }
 
+/* Контент */
 .homepage-content {
   flex: 1;
   padding: 3rem 2rem;
@@ -44,6 +52,7 @@ body, html {
   margin: 0 auto;
 }
 
+/* Секції */
 .homepage-section {
   margin-bottom: 2.5rem;
   background: #fff;
@@ -64,13 +73,16 @@ body, html {
   margin-bottom: 1rem;
 }
 
-.homepage-section p, .homepage-section ul {
+.homepage-section p,
+.homepage-section ul,
+.homepage-section ol {
   font-size: 1.05rem;
   line-height: 1.6;
   color: #555;
 }
 
-.homepage-section ul {
+.homepage-section ul,
+.homepage-section ol {
   padding-left: 1.5rem;
 }
 
@@ -78,10 +90,16 @@ body, html {
   margin-bottom: 0.5rem;
 }
 
+/* 📌 Футер */
 .homepage-footer {
   background-color: #4a4a4a;
   color: #ddd;
   text-align: center;
   padding: 1.5rem;
   font-size: 0.9rem;
+  width: 100%;
+  margin-top: auto;
 }
+
+  git config --global user.email "gogaf1224@gmail.com"
+  git config --global user.name "kaolinhida"
