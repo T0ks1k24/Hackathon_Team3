@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> dota4
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
 
 * {
@@ -13,7 +9,7 @@
 html, body {
   height: 100%;
   width: 100%;
-  font-family: 'Merriweather', serif;
+  font-family: 'Merriweather', 'Segoe UI', 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -21,47 +17,42 @@ html, body {
 #root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  width: 100vw;
   margin: 0;
 }
 
-<<<<<<< HEAD
-=======
-/* CSS-змінні для світлої теми */
 [data-theme="light"] {
-  --background-color: #fdfcf9;
-  --text-color: #333;
-  --header-bg: #1e1e2f;
-  --header-text: #ffffff;
-  --header-hover: #00bcd4;
-  --footer-bg: #4a4a4a;
-  --footer-text: #ddd;
-  --section-bg: #fff;
-  --section-text: #555;
-  --section-heading: #5a5a5a;
-  --section-shadow: rgba(0, 0, 0, 0.05);
-  --section-shadow-hover: rgba(0, 0, 0, 0.1);
+  --background-color: #f5f7fa;      
+  --text-color: #1a1a1a;              
+  --header-bg: #ffffff;            
+  --header-text: #333333;             
+  --header-hover: #0077cc;           
+  --footer-bg: #eaeaea;              
+  --footer-text: #555555;            
+  --section-bg: #ffffff;             
+  --section-text: #444444;            
+  --section-heading: #222222;         
+  --section-shadow: rgba(0, 0, 0, 0.06);       
+  --section-shadow-hover: rgba(0, 0, 0, 0.12); 
 }
 
-/* CSS-змінні для темної теми */
+
 [data-theme="dark"] {
-  --background-color: #1e1e2f;
-  --text-color: #ddd;
-  --header-bg: #121212;
-  --header-text: #ffffff;
-  --header-hover: #00bcd4;
-  --footer-bg: #2a2a2a;
-  --footer-text: #bbb;
-  --section-bg: #2a2a2a;
-  --section-text: #ccc;
-  --section-heading: #bbb;
-  --section-shadow: rgba(255, 255, 255, 0.05);
-  --section-shadow-hover: rgba(255, 255, 255, 0.1);
+  --background-color: #121212;        
+  --text-color: #f0f0f0;              
+  --header-bg: #1e1e1e;               
+  --header-text: #ffffff;             
+  --header-hover: #33c4ff;            
+  --footer-bg: #1a1a1a;              
+  --footer-text: #cccccc;             
+  --section-bg: #1c1c1c;             
+  --section-text: #dddddd;          
+  --section-heading: #ffffff;       
+  --section-shadow: rgba(255, 255, 255, 0.04);      
+  --section-shadow-hover: rgba(255, 255, 255, 0.08); 
 }
+
 
 html, body {
   background: var(--background-color);
   color: var(--text-color);
 }
->>>>>>> dota4

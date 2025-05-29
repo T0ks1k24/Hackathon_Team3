@@ -8,6 +8,11 @@
   max-width: 1300px;
 }
 
+.card-list-section {
+  width: 100%;
+  background-color: var(--background-color); /* Використовуємо змінну для фону */
+}
+
 .card-list-item {
   display: flex;
   justify-content: center;
@@ -16,4 +21,20 @@
 .card-list-empty {
   text-align: center;
   padding: 40px;
+  background-color: var(--section-bg);
+  color: var(--section-text);
+}
+
+.empty {
+  font-size: 1.2rem;
+  color: var(--section-text);
+}
+
+@media (max-width: 768px) {
+  .card-list {
+    gap: 16px;
+  }
+  .card-list-empty {
+    padding: 20px;
+  }
 }

@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header/Header.js';
 import Footer from './components/Footer/Footer.js';
-import HomePage from './pages/HomePage/HomePage.js';
-import RegisterPage from './pages/RegisterPage/RegisterPage.js';
-import LoginPage from './pages/LoginPage/LoginPage.js';
+import HomePage from './pages/HomePage/HomePage.jsx';
+import RegisterPage from './pages/RegisterPage/RegisterPage.jsx';
+import LoginPage from './pages/LoginPage/LoginPage.jsx';
 import BooksPage from './pages/BooksPage/BooksPage.jsx';
-import ProfilePage from './pages/ProfilePage/ProfilePage.js';
+import ProfilePage from './pages/ProfilePage/ProfilePage.jsx';
 
 import PrivateRoute from './security/PrivateRoute.jsx';
 import PublicRoute from './security/PublicRoute.jsx';
