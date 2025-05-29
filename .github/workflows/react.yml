@@ -29,7 +29,10 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
         working-directory: frontend
+
 
       - name: Deploy to server via SSH
         uses: appleboy/scp-action@v0.1.4
