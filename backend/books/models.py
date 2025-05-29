@@ -14,7 +14,7 @@ class Book(models.Model):
     availability = models.PositiveIntegerField(default=0)
     year = models.PositiveIntegerField()
     description = models.TextField(blank=True, null=True)
-    utc_code = models.CharField(max_length=20, unique=True, blank=True)
+    upc_code = models.CharField(max_length=20, unique=True, blank=True)
     image = models.URLField(blank=True)
 
     def __str__(self):
