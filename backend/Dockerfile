@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-RUN apt-get update && apt-get install -y netcat && apt-get clean
+RUN sudo apt-get update && sudo apt-get install -y netcat && sudo apt-get clean
 
 WORKDIR /app
 
