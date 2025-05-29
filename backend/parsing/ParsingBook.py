@@ -49,7 +49,7 @@ def parse_books():
 
 import json
 from urllib.parse import urljoin
-
+import re
 
 base_url = "http://books.toscrape.com/catalogue/page-{}.html"
 book_base = "http://books.toscrape.com/catalogue/"
@@ -61,9 +61,14 @@ def fetch_book(book_url):
         soup = BeautifulSoup(response.text, "html.parser")
 
         title = soup.find("div", class_="product_main").h1.text.strip()
-        price = soup.find("p", class_="price_color").text.strip()
-        availability = soup.find("p", class_="instock availability").text.strip()
         
+        price = soup.find("p", class_="price_color").text.strip()
+        price  = float(re.findall(r"[\d\.]+", price)[0])
+
+        availability = soup.find("p", class_="instock availability").text.strip()
+        availability_match = re.search(r"\((\d+)\savailable\)", availability)
+        availability = int(availability_match.group(1)) if availability_match else 0
+
         rating_tag = soup.find("p", class_="star-rating")
         rating_class = rating_tag["class"] if rating_tag else []
         rating_text = rating_class[1] if len(rating_class) > 1 else "None"
@@ -78,7 +83,7 @@ def fetch_book(book_url):
         rating = rating_map.get(rating_text, 0)
                 
         table = soup.find("table", class_="table table-striped")
-        upc = table.find("th", text="UPC").find_next("td").text if table else ""
+        upc = table.find("th", string="UPC").find_next("td").text if table else ""
         img_tag = soup.find("img")
         img_url = urljoin("http://books.toscrape.com/", img_tag["src"]) if img_tag else ""
 
