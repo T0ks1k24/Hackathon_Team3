@@ -25,10 +25,11 @@ export default function RegisterPage() {
     try {
       const data = await registerUser({
         username,
-        firstname,
-        lastname,
+        first_name: firstname,
+        last_name: lastname,
         email,
-        password
+        password,
+        password2: confirmPassword,
       });
       setSuccess(
         `Registration successful! Welcome, ${data.first_name || data.username}!`

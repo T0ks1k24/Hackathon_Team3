@@ -1,8 +1,8 @@
-// userFetch.js
-const API_URL = 'http://localhost:8000/api'; // замініть на свій URL
+
+const API_URL = 'http://localhost:8000/api'; 
 
 export async function loginUser(credentials) {
-  const response = await fetch(`${API_URL}/login`, {
+  const response = await fetch(`${API_URL}/login/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials),
@@ -15,7 +15,7 @@ export async function loginUser(credentials) {
 }
 
 export async function registerUser(data) {
-  const response = await fetch(`${API_URL}/users`, {
+  const response = await fetch(`${API_URL}/users/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
