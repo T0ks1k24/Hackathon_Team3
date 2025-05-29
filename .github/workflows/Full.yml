@@ -97,7 +97,19 @@ jobs:
             cd ~/devops/docker
             sudo docker-compose down
             sudo docker-compose up -d --build
-            sleep 30
+
+            # Очікуємо, поки контейнер backend запуститься
+            echo "Waiting for backend container to be healthy..."
+            for i in {1..10}; do
+              STATUS=$(sudo docker inspect -f '{{.State.Health.Status}}' backend 2>/dev/null || echo "starting")
+              echo "Status: $STATUS"
+              if [ "$STATUS" = "healthy" ]; then
+              break
+            fi
+              sleep 5
+            done
+
+            # Django міграції
             sudo docker-compose exec -T backend python manage.py migrate
             sudo docker-compose exec -T backend python manage.py collectstatic --noinput
 
