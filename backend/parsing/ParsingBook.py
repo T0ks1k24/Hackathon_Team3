@@ -50,11 +50,14 @@ def parse_books():
 import json
 from urllib.parse import urljoin
 import re
+import random
+import time
 
-base_url = "http://books.toscrape.com/catalogue/page-{}.html"
-book_base = "http://books.toscrape.com/catalogue/"
+start_time = time.time()
 
-def fetch_book(book_url):
+base_site = "http://books.toscrape.com/"
+
+def fetch_book(book_url, genre):
     try:
         response = requests.get(book_url, timeout=10)
         response.raise_for_status()
@@ -84,6 +87,7 @@ def fetch_book(book_url):
                 
         table = soup.find("table", class_="table table-striped")
         upc = table.find("th", string="UPC").find_next("td").text if table else ""
+        
         img_tag = soup.find("img")
         img_url = urljoin("http://books.toscrape.com/", img_tag["src"]) if img_tag else ""
 
@@ -94,7 +98,8 @@ def fetch_book(book_url):
             if desc_p:
                 description = desc_p.text.strip()
         
-       
+        year = random.randint(1800, 2025)
+
 
         return {
             "title": title,
@@ -103,38 +108,78 @@ def fetch_book(book_url):
             "rating": rating,
             "upc": upc,
             "image_url": img_url,
-            "description": description
+            "description": description,
+            "genre": genre,
+            "year": year
         }
     except Exception as e:
         print(f"Error fetching {book_url}: {e}")
         return None
 
-def main():
-    book_urls = []
-    for page in range(1, 51):
-        url = base_url.format(page)
-        try:
-            response = requests.get(url, timeout=10)
-            response.raise_for_status()
-        except Exception as e:
-            print(f"Error loading page {page}: {e}")
-            continue
+def get_genres():
+    response = requests.get(base_site)
+    soup = BeautifulSoup(response.text, "html.parser")
+    genres = soup.select("div.side_categories ul li ul li a")
+    genre_links = []
+
+
+    for genre in genres:
+        name = genre.text.strip()
+        relative_link = genre.get("href")
+        genre_url = urljoin(base_site, relative_link)
+        genre_links.append((name, genre_url))
+
+    return genre_links
+
+def get_book_links_from_genre(genre_url):
+    book_links = []
+    page_number = 1
+
+    while True:
+        if page_number == 1:
+            url = genre_url
+        else:
+            url = genre_url.replace("index.html", f"page-{page_number}.html")
+
+        response = requests.get(url)
+        if response.status_code != 200:
+            break
 
         soup = BeautifulSoup(response.text, "html.parser")
         books = soup.find_all("article", class_="product_pod")
-        for book in books:
-            relative_link = book.h3.a["href"]
-            book_url = urljoin(book_base, relative_link)
-            book_urls.append(book_url)
 
-    with open("books_detailed.jsonl", "w", encoding="utf-8") as f:
+        if not books:
+            break
+
+        for book in books:
+            relative_link = book.h3.a["href"].replace('../../../', '')
+            book_url = urljoin(base_site + "catalogue/", relative_link)
+            book_links.append(book_url)
+
+        page_number += 1
+
+    return book_links
+
+def main():
+    all_book_urls = []
+    genre_links = get_genres()
+    print(f"Found {len(genre_links)} genres.")
+
+    for genre_name, genre_url in genre_links:
+        print(f"Processing genre: {genre_name}")
+        book_urls = get_book_links_from_genre(genre_url)
+        all_book_urls.extend([(url, genre_name) for url in book_urls])
+
+    with open("books_by_genre.jsonl", "w", encoding="utf-8") as f:
         with ThreadPoolExecutor(max_workers=10) as executor:
-            futures = [executor.submit(fetch_book, url) for url in book_urls]
+            futures = [executor.submit(fetch_book, url, genre) for url, genre in all_book_urls]
             for future in as_completed(futures):
                 book_data = future.result()
                 if book_data:
                     f.write(json.dumps(book_data, ensure_ascii=False) + "\n")
-                    print(f"Save: {book_data['title']}".encode("cp1251", errors="ignore").decode("cp1251"))
 
 if __name__ == "__main__":
     main()
+
+end_time = time.time()
+print(f"{end_time - start_time:.5f} секунд")
