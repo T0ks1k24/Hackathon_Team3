@@ -1,0 +1,13 @@
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  font-weight: 700;
+}
+
+div {
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  background-color: #fefefe;
+}

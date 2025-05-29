@@ -4,4 +4,5 @@ sqlparse==0.5.3
 tzdata==2025.2
 psycopg2-binary
 django-filter
+djangorestframework-simplejwt
 django-cors-headers
