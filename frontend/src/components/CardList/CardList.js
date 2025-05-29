@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React from 'react';
 import Card from '../Card/Card.js';
 import styles from './CardList.module.css';
