@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> dota4
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
 
 * {
@@ -11,14 +14,54 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: 'Merriweather', serif;
-  background: #fdfcf9;
-  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;
+  margin: 0;
 }
 
+<<<<<<< HEAD
+=======
+/* CSS-змінні для світлої теми */
+[data-theme="light"] {
+  --background-color: #fdfcf9;
+  --text-color: #333;
+  --header-bg: #1e1e2f;
+  --header-text: #ffffff;
+  --header-hover: #00bcd4;
+  --footer-bg: #4a4a4a;
+  --footer-text: #ddd;
+  --section-bg: #fff;
+  --section-text: #555;
+  --section-heading: #5a5a5a;
+  --section-shadow: rgba(0, 0, 0, 0.05);
+  --section-shadow-hover: rgba(0, 0, 0, 0.1);
+}
+
+/* CSS-змінні для темної теми */
+[data-theme="dark"] {
+  --background-color: #1e1e2f;
+  --text-color: #ddd;
+  --header-bg: #121212;
+  --header-text: #ffffff;
+  --header-hover: #00bcd4;
+  --footer-bg: #2a2a2a;
+  --footer-text: #bbb;
+  --section-bg: #2a2a2a;
+  --section-text: #ccc;
+  --section-heading: #bbb;
+  --section-shadow: rgba(255, 255, 255, 0.05);
+  --section-shadow-hover: rgba(255, 255, 255, 0.1);
+}
+
+html, body {
+  background: var(--background-color);
+  color: var(--text-color);
+}
+>>>>>>> dota4
