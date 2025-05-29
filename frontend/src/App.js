@@ -5,7 +5,7 @@ import RegisterPage from './pages/RegisterPage/RegisterPage.js';
 import LoginPage from './pages/LoginPage/LoginPage.js';
 import BooksPage from './pages/BooksPage/BooksPage.js';
 import Header from './components/Header/Header.js';
-import ProfilePage from './pages/ProfilePage/ProfilePage.jsx';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 import PrivateRoute from './security/PrivateRoute.jsx';
 import PublicRoute from './security/PublicRoute.jsx';

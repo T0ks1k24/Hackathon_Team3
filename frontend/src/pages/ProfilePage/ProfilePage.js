@@ -7,12 +7,14 @@ export default function ProfilePage() {
   const navigate = useNavigate();
 
   const accessToken = localStorage.getItem("accessToken");
-  const refreshToken = localStorage.getItem("refreshToken");
-
-  const userData = refreshToken ? parseJwt(refreshToken) : null;
+  console.log("Access Token:", accessToken);
+  
+  const userData = accessToken ? parseJwt(accessToken) : null;
+  console.log("User Data parsed from token:", userData);
 
   useEffect(() => {
     if (!accessToken || !userData) {
+      console.log("Redirecting to login because no token or no user data");
       navigate("/login");
     }
   }, [accessToken, userData, navigate]);
@@ -24,17 +26,21 @@ export default function ProfilePage() {
     navigate("/login");
   };
 
-  if (!accessToken || !userData) return null;
+  if (!accessToken || !userData) {
+    // Поки чекаємо редіректу - показуємо хоч щось (щоб не було повної пустоти)
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="profile-container">
       <h2>Профіль користувача</h2>
       <div className="profile-info">
-        <p><strong>Ім’я користувача:</strong> {userData.name || "—"}</p>
+        <p><strong>Ім’я користувача:</strong> {userData.username || "—"}</p>
         <p><strong>Ім’я:</strong> {userData.first_name || "—"}</p>
         <p><strong>Прізвище:</strong> {userData.last_name || "—"}</p>
         <p><strong>Email:</strong> {userData.email || "—"}</p>
-        <p><strong>Роль:</strong> {userData.role || "—"}</p>
+        <p><strong>Роль:</strong> {userData.isStaff ? "Admin" : "User"}</p>
+
       </div>
 
       <button onClick={handleLogout} className="logout-button">
