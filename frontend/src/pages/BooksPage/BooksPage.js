@@ -20,32 +20,31 @@ const books = [
     stock: 0,
   },
   {
-    id: 2,
+    id: 3,
     photo: 'https://books.toscrape.com/media/cache/fe/72/fe72f0532301ec28892ae79a629a293c.jpg',
     rating: 4.3,
-    title: 'You Don’t Know JS',
+    title: 'You Don’t Know JS (Vol. 2)',
     price: 30.0,
     stock: 10,
   },
   {
-    id: 2,
+    id: 4,
     photo: 'https://books.toscrape.com/media/cache/fe/72/fe72f0532301ec28892ae79a629a293c.jpg',
     rating: 4.3,
-    title: 'You Don’t Know JS',
+    title: 'You Don’t Know JS (Vol. 3)',
     price: 30.0,
     stock: 10,
   },
   {
-    id: 2,
+    id: 5,
     photo: 'https://books.toscrape.com/media/cache/fe/72/fe72f0532301ec28892ae79a629a293c.jpg',
     rating: 4.3,
-    title: 'You Don’t Know JS',
+    title: 'You Don’t Know JS (Vol. 4)',
     price: 30.0,
     stock: 0,
   },
-
-
 ];
+
 
 export default function BooksPage() {
   return (
