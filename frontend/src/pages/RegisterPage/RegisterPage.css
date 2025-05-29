@@ -1,65 +1,67 @@
-form {
-  max-width: 400px;
-  margin: 40px auto;
-  padding: 30px 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fafafa;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #eef3f7;
+  padding: 20px;
 }
 
-h2 {
+.register-form {
+  background-color: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.register-title {
   text-align: center;
-  margin-bottom: 25px;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
   color: #333;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+.register-input {
   width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 15px;
-  border: 1px solid #bbb;
-  border-radius: 5px;
-  font-size: 15px;
-  transition: border-color 0.3s ease;
+  padding: 12px 15px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
-  border-color: #007BFF;
+.register-input:focus {
   outline: none;
+  border-color: #00bcd4;
 }
 
-button {
+.register-button {
   width: 100%;
-  padding: 12px 0;
-  background-color: #007BFF;
-  border: none;
-  border-radius: 5px;
-  font-size: 17px;
+  padding: 12px;
+  background-color: #00bcd4;
   color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #0056b3;
+.register-button:hover {
+  background-color: #0097a7;
 }
 
-p {
+.register-error {
+  color: red;
+  margin-top: 0.5rem;
   text-align: center;
-  margin-top: 10px;
-  font-weight: 500;
 }
 
-p[style*="color: red"] {
-  color: #d9534f;
-}
-
-p[style*="color: green"] {
-  color: #28a745;
+.register-success {
+  color: green;
+  margin-top: 0.5rem;
+  text-align: center;
 }

@@ -1,22 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Header.module.css"; 
+import styles from "./Header.module.css";
 
 export default function Header() {
   return (
-    <header className="header">
-      <nav>
-        <ul className="nav-list">
-          <li>
-            <Link to="/">Головна</Link>
-          </li>
-          <li>
-            <Link to="/books">Магазин</Link>
-          </li>
-          <li>
-            <Link to="/login">Вхід</Link>
-          </li>
-        </ul>
+    <header className={styles.header}>
+      <nav className={styles.nav}>
+        <Link to="/" className={styles.link}>Головна</Link>
+        <Link to="/books" className={styles.link}>Бібліотека</Link>
       </nav>
     </header>
   );

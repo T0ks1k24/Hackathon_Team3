@@ -25,7 +25,7 @@ const books = [
     rating: 4.3,
     title: 'You Don’t Know JS',
     price: 30.0,
-    stock: 0,
+    stock: 10,
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ const books = [
     rating: 4.3,
     title: 'You Don’t Know JS',
     price: 30.0,
-    stock: 0,
+    stock: 10,
   },
   {
     id: 2,
