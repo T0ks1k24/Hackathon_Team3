@@ -1,3 +1,4 @@
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 from bs4 import BeautifulSoup
 
@@ -44,3 +45,91 @@ def parse_books():
             })
         
     return books_data
+
+
+import json
+from urllib.parse import urljoin
+
+
+base_url = "http://books.toscrape.com/catalogue/page-{}.html"
+book_base = "http://books.toscrape.com/catalogue/"
+
+def fetch_book(book_url):
+    try:
+        response = requests.get(book_url, timeout=10)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        title = soup.find("div", class_="product_main").h1.text.strip()
+        price = soup.find("p", class_="price_color").text.strip()
+        availability = soup.find("p", class_="instock availability").text.strip()
+        
+        rating_tag = soup.find("p", class_="star-rating")
+        rating_class = rating_tag["class"] if rating_tag else []
+        rating_text = rating_class[1] if len(rating_class) > 1 else "None"
+
+        rating_map = {
+            "One": 1,
+            "Two": 2,
+            "Three": 3,
+            "Four": 4,
+            "Five": 5
+        }
+        rating = rating_map.get(rating_text, 0)
+                
+        table = soup.find("table", class_="table table-striped")
+        upc = table.find("th", text="UPC").find_next("td").text if table else ""
+        img_tag = soup.find("img")
+        img_url = urljoin("http://books.toscrape.com/", img_tag["src"]) if img_tag else ""
+
+        description = ""
+        desc_tag = soup.find("div", id="product_description")
+        if desc_tag:
+            desc_p = desc_tag.find_next_sibling("p")
+            if desc_p:
+                description = desc_p.text.strip()
+        
+       
+
+        return {
+            "title": title,
+            "price": price,
+            "availability": availability,
+            "rating": rating,
+            "upc": upc,
+            "image_url": img_url,
+            "description": description
+        }
+    except Exception as e:
+        print(f"Error fetching {book_url}: {e}")
+        return None
+
+def main():
+    book_urls = []
+    for page in range(1, 51):
+        url = base_url.format(page)
+        try:
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()
+        except Exception as e:
+            print(f"Error loading page {page}: {e}")
+            continue
+
+        soup = BeautifulSoup(response.text, "html.parser")
+        books = soup.find_all("article", class_="product_pod")
+        for book in books:
+            relative_link = book.h3.a["href"]
+            book_url = urljoin(book_base, relative_link)
+            book_urls.append(book_url)
+
+    with open("books_detailed.jsonl", "w", encoding="utf-8") as f:
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            futures = [executor.submit(fetch_book, url) for url in book_urls]
+            for future in as_completed(futures):
+                book_data = future.result()
+                if book_data:
+                    f.write(json.dumps(book_data, ensure_ascii=False) + "\n")
+                    print(f"Save: {book_data['title']}".encode("cp1251", errors="ignore").decode("cp1251"))
+
+if __name__ == "__main__":
+    main()
