@@ -1,4 +1,8 @@
 #!/bin/sh
 
+
+echo "Запуск міграцій..."
 python manage.py migrate
-python manage.py runserver 0.0.0.0:8000
+
+echo "Запуск сервера..."
+exec python manage.py runserver 0.0.0.0:8000
