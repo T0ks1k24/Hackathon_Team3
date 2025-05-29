@@ -168,11 +168,11 @@ def main():
     for genre_name, genre_url in genre_links:
         print(f"Processing genre: {genre_name}")
         book_urls = get_book_links_from_genre(genre_url)
-        all_book_urls.extend(book_urls)
+        all_book_urls.extend([(url, genre_name) for url in book_urls])
 
     with open("books_by_genre.jsonl", "w", encoding="utf-8") as f:
         with ThreadPoolExecutor(max_workers=10) as executor:
-            futures = [executor.submit(fetch_book, url, genre_name) for url in all_book_urls]
+            futures = [executor.submit(fetch_book, url, genre) for url, genre in all_book_urls]
             for future in as_completed(futures):
                 book_data = future.result()
                 if book_data:
