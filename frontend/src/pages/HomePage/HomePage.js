@@ -44,10 +44,6 @@ const HomePage = () => {
           </p>
         </section>
       </main>
-
-      <footer className="homepage-footer">
-        <p>© {new Date().getFullYear()} Бібліотека. Усі права захищено.</p>
-      </footer>
     </div>
   );
 };
