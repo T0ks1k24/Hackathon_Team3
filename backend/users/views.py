@@ -2,9 +2,10 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core.mail import send_mail
 from rest_framework.response import Response
 from rest_framework import generics, mixins, permissions, status
-from .serializers import UserSerializer, RegisterSerializer
+from .serializers import UserSerializer, RegisterSerializer, MyTokenObtainPairSerializer
 from users.models import CustomUser
 from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.views import TokenObtainPairView
 from .permissions import IsOwnerOrAdmin
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
@@ -86,3 +87,6 @@ class ResetPasswordConfirmView(generics.GenericAPIView):
         user.set_password(password)
         user.save()
         return Response({'detail': 'Password has been reset successfully'})
+    
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
