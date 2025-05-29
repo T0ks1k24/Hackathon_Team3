@@ -12,7 +12,7 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
     rating = models.DecimalField(max_digits=3, decimal_places=1, default=0.0)
     availability = models.PositiveIntegerField(default=0)
-    year = models.PositiveIntegerField()
+    year = models.PositiveIntegerField(null=True, blank=True)
     description = models.TextField(blank=True, null=True)
     upc_code = models.CharField(max_length=20, unique=True, blank=True)
     image = models.URLField(blank=True)
