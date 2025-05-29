@@ -24,10 +24,23 @@ def parse_books():
             image_rel_url = book.find("img")["src"]
             image_url = "https://books.toscrape.com/" + image_rel_url.replace("../../", "")
 
+            rating_class = book.find("p", class_="star-rating")["class"]
+            rating_text = rating_class[1] if len(rating_class) > 1 else "None"
+
+            rating_map = {
+                "One": 1,
+                "Two": 2,
+                "Three": 3,
+                "Four": 4,
+                "Five": 5
+            }
+            rating = rating_map.get(rating_text, 0)
+
             books_data.append({
                 "title": title,
-               "price": price,
-               "image_url": image_url
+                "price": price,
+                "image_url": image_url,
+                "rating": rating
             })
         
     return books_data
