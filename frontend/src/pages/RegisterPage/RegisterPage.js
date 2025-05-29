@@ -3,45 +3,47 @@ import { registerUser } from "../../features/user/userFetch.js";
 import "./RegisterPage.css";
 
 export default function RegisterPage() {
-  const [username, setUsername] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
+
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     setSuccess(null);
 
-    if (password !== confirmPassword) {
+    if (formData.password !== formData.password2) {
       setError("Passwords do not match");
       return;
     }
 
     try {
-      const data = await registerUser({
-        username,
-        first_name: firstname,
-        last_name: lastname,
-        email,
-        password,
-        password2: confirmPassword,
+      const data = await registerUser(formData);
+      setSuccess(`Registration successful! Welcome, ${data.first_name || data.username}!`);
+      setFormData({
+        username: "",
+        first_name: "",
+        last_name: "",
+        email: "",
+        password: "",
+        password2: "",
       });
-      setSuccess(
-        `Registration successful! Welcome, ${data.first_name || data.username}!`
-      );
-      setUsername("");
-      setFirstname("");
-      setLastname("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
     } catch (err) {
-      console.error(err);
       setError(err.message || "Registration failed");
     }
   };
@@ -52,44 +54,50 @@ export default function RegisterPage() {
 
       <input
         type="text"
+        name="username"
         placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={formData.username}
+        onChange={handleChange}
         required
       />
       <input
         type="text"
+        name="first_name"
         placeholder="First Name"
-        value={firstname}
-        onChange={(e) => setFirstname(e.target.value)}
+        value={formData.first_name}
+        onChange={handleChange}
         required
       />
       <input
         type="text"
+        name="last_name"
         placeholder="Last Name"
-        value={lastname}
-        onChange={(e) => setLastname(e.target.value)}
+        value={formData.last_name}
+        onChange={handleChange}
         required
       />
       <input
         type="email"
+        name="email"
         placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={formData.email}
+        onChange={handleChange}
         required
       />
       <input
         type="password"
+        name="password"
         placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={formData.password}
+        onChange={handleChange}
         required
       />
       <input
         type="password"
+        name="password2"
         placeholder="Confirm Password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
+        value={formData.password2}
+        onChange={handleChange}
         required
       />
 

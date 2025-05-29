@@ -4,17 +4,13 @@ import HomePage from './pages/HomePage/HomePage.js';
 import RegisterPage from './pages/RegisterPage/RegisterPage.js';
 import LoginPage from './pages/LoginPage/LoginPage.js';
 import BooksPage from './pages/BooksPage/BooksPage.js';
+import Header from './components/Header/Header.js';
 
 function App() {
   return (
     <Router>
       <div>
-        <nav style={{ padding: '1rem', background: '#eee' }}>
-          <Link to="/" style={{ marginRight: '1rem' }}>Головна</Link>
-          <Link to="/register" style={{ marginRight: '1rem' }}>register</Link>
-
-        </nav>
-
+        <Header/>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />

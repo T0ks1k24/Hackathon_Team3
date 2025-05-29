@@ -1,28 +1,46 @@
+const API_URL = "http://localhost:8000/api";
 
-const API_URL = 'http://localhost:8000/api'; 
 
-export async function loginUser(credentials) {
-  const response = await fetch(`${API_URL}/login/`, {
+export async function loginUser({ email, password }) {
+  const response = await fetch(`${API_URL}/users/login/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(credentials),
+    body: JSON.stringify({ email, password }),
   });
-  if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message || 'Login failed');
+
+  const contentType = response.headers.get('content-type');
+
+  if (!contentType || !contentType.includes('application/json')) {
+    throw new Error('Server did not return JSON. Check API URL.');
   }
-  return response.json();
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.detail || 'Login failed');
+  }
+
+  return data;
 }
 
 export async function registerUser(data) {
   const response = await fetch(`${API_URL}/users/`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(data),
   });
+
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message || 'Registration failed');
+    const errorData = await response.json();
+    console.error("Registration error details:", errorData);
+    throw new Error(
+      errorData.detail ||
+        Object.values(errorData).join(" ") ||
+        "Registration failed"
+    );
   }
+
   return response.json();
 }
