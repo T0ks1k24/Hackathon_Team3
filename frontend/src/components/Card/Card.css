@@ -1,9 +1,9 @@
 .card {
   width: 270px;
   height: 500px;
-  background: white;
+  background: var(--section-bg); /* Змінна для фону картки */
   border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 18px var(--section-shadow); /* Змінна для тіні */
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -12,14 +12,14 @@
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 24px var(--section-shadow-hover); /* Змінна для тіні при ховері */
 }
 
 .card-photo {
   height: 65%;
   width: 100%;
   object-fit: cover;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--section-shadow); /* Змінна для межі */
 }
 
 .card-info {
@@ -37,17 +37,18 @@
   height: 38px;
   overflow: hidden;
   margin-bottom: 6px;
+  color: var(--section-heading); /* Змінна для заголовка */
 }
 
 .card-rating {
   font-size: 14px;
-  color: #555;
+  color: var(--section-text); /* Змінна для тексту */
 }
 
 .card-price {
   font-size: 16px;
   font-weight: bold;
-  color: #333;
+  color: var(--section-heading); /* Змінна для ціни */
   margin: 4px 0;
 }
 
@@ -57,9 +58,29 @@
 }
 
 .in-stock {
-  color: #2e7d32;
+  color: #2e7d32; /* Залишаємо зелений, оскільки це специфічний колір */
 }
 
 .out-of-stock {
-  color: #c62828;
+  color: #c62828; /* Залишаємо червоний, оскільки це специфічний колір */
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    max-width: 200px;
+    height: 450px;
+  }
+  .card-photo {
+    height: 60%;
+  }
+  .card-title {
+    font-size: 14px;
+    height: 34px;
+  }
+  .card-rating,
+  .card-price,
+  .card-stock {
+    font-size: 13px;
+  }
 }
