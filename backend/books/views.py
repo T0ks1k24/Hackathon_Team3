@@ -1,7 +1,8 @@
 from rest_framework import generics, filters
 from .models import Book, Genre
+
 from django_filters.rest_framework import DjangoFilterBackend
-from .serializers import BookSerializer, GenreSerializer
+from .serializers import BookSerializer, GenreSerializer, BookDetailSerializer
 from .permissions import IsAdminOrReadOnly
 
 
@@ -25,5 +26,6 @@ class BookListCreateView(generics.ListCreateAPIView):
 
 class BookRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
-    serializer_class = BookSerializer
+    serializer_class = BookDetailSerializer
     permission_classes = [IsAdminOrReadOnly]
+
