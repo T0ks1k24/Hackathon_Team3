@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header/Header.js';
-
+import Footer from './components/Footer/Footer.js';
 import HomePage from './pages/HomePage/HomePage.js';
 import RegisterPage from './pages/RegisterPage/RegisterPage.js';
 import LoginPage from './pages/LoginPage/LoginPage.js';
@@ -59,6 +59,7 @@ function App() {
 
         </Routes>
       </main>
+      <Footer/>
     </Router>
   );
 }
