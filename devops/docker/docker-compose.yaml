@@ -5,11 +5,8 @@ services:
     build: ../../backend
     volumes:
       - ../../backend:/app
-    ports:
-      - "8000:8000"
-    env_file:
-      - .env
-    restart: always
+    environment:
+      - DEBUG=1
     networks:
       - app-network
     depends_on:
