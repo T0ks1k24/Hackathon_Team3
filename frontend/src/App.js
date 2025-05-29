@@ -1,62 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage/HomePage';
-import RegisterPage from './pages/RegisterPage/RegisterPage';
-import LoginPage from './pages/LoginPage/LoginPage';
-import BooksPage from './pages/BooksPage/BooksPage';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import ProfilePage from './pages/ProfilePage/ProfilePage';
-import PrivateRoute from './security/PrivateRoute';
-import PublicRoute from './security/PublicRoute';
-import './App.css';
+import BookList from './pages/BookList';
 
 function App() {
   return (
-    <Router>
-      <div className="app-container">
-        <Header />
-        <div className="content-wrapper">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/register"
-              element={
-                <PublicRoute>
-                  <RegisterPage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <PublicRoute>
-                  <LoginPage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <PrivateRoute>
-                  <ProfilePage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/books"
-              element={
-                <PrivateRoute>
-                  <BooksPage />
-                </PrivateRoute>
-              }
-            />
-          </Routes>
-        </div>
-        <Footer />
-      </div>
-    </Router>
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex flex-col items-center">
+      <h1 className="text-4xl font-extrabold my-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-400 drop-shadow-lg animate-fadeIn">
+        Книжкова бібліотека
+      </h1>
+      <BookList />
+    </div>
   );
 }
+
 
 export default App;
