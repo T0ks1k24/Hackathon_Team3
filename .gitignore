@@ -6,3 +6,4 @@ env/
 # Node (React)
 node_modules/
 build/
+.env
