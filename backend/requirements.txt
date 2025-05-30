@@ -13,3 +13,4 @@ python-dotenv
 djangorestframework-simplejwt
 django-cors-headers
 
+

@@ -9,9 +9,6 @@ services:
       - DEBUG=1
     ports:
       - "8000:8000"
-    env_file:
-      - .env
-    restart: always
     networks:
       - app-network
     depends_on:

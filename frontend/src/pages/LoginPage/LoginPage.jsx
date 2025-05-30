@@ -11,7 +11,6 @@ export default function LoginPage() {
 
   const navigate = useNavigate();
 
-  // 🔐 Якщо залогінений — перенаправити
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {

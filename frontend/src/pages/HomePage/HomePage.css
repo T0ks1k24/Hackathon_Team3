@@ -6,25 +6,20 @@
   padding: 0;
 }
 
-body, html {
-  font-family: 'Merriweather', serif;
-  background: #fdfcf9;
-  color: #333;
-  height: 100%;
-}
-
 .homepage {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  background: var(--background-color);
+  color: var(--text-color);
 }
 
 .homepage-header {
-  background: linear-gradient(135deg, #8e8d8a, #c9c5ba);
-  color: white;
+  background: linear-gradient(135deg, #8e8d8a, #c9c5ba); /* Залишаємо градієнт, оскільки він специфічний */
+  color: #ffffff;
   padding: 4rem 2rem;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px var(--section-shadow);
+  width: 100vw;
 }
 
 .homepage-header h1 {
@@ -42,46 +37,42 @@ body, html {
   padding: 3rem 2rem;
   max-width: 900px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .homepage-section {
   margin-bottom: 2.5rem;
-  background: #fff;
+  background: var(--section-bg);
   border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 20px var(--section-shadow);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .homepage-section:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 24px var(--section-shadow-hover);
 }
 
 .homepage-section h2 {
   font-size: 1.6rem;
-  color: #5a5a5a;
+  color: var(--section-heading);
   margin-bottom: 1rem;
 }
 
-.homepage-section p, .homepage-section ul {
+.homepage-section p,
+.homepage-section ul,
+.homepage-section ol {
   font-size: 1.05rem;
   line-height: 1.6;
-  color: #555;
+  color: var(--section-text);
 }
 
-.homepage-section ul {
+.homepage-section ul,
+.homepage-section ol {
   padding-left: 1.5rem;
 }
 
 .homepage-section li {
   margin-bottom: 0.5rem;
-}
-
-.homepage-footer {
-  background-color: #4a4a4a;
-  color: #ddd;
-  text-align: center;
-  padding: 1.5rem;
-  font-size: 0.9rem;
 }

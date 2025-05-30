@@ -1,4 +1,6 @@
 from rest_framework import generics, filters
+from .models import Book, Genre
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAdminUser
 from .models import Book, Genre
@@ -8,7 +10,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import BookSerializer, GenreSerializer, BookDetailSerializer
 from .permissions import IsAdminOrReadOnly
 from parsing.ParsingBook import scrape_books
-
 
 class GenreListCreateView(generics.ListCreateAPIView):
     queryset = Genre.objects.all()
@@ -30,8 +31,9 @@ class BookListCreateView(generics.ListCreateAPIView):
 
 class BookRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
-    serializer_class = BookDetailSerializer
+    serializer_class = BookSerializer
     permission_classes = [IsAdminOrReadOnly]
+
 
 class ImportBooksView(APIView):
     permission_classes = [IsAdminUser]

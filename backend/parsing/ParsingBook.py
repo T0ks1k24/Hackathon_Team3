@@ -160,6 +160,7 @@ def get_book_links_from_genre(genre_url):
 
     return book_links
 
+
 def scrape_books():
     all_book_urls = []
     genre_links = get_genres()
