@@ -1,48 +1,415 @@
+/* styles/SearchBooks.css */
+
+/* Container for the entire search page */
 .search-page {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 40px 20px;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
+/* Heading style */
+.search-page h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; /* Dark text for light theme */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Search bar container (flexbox for layout) */
+.search-bar {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+/* Input fields */
+.search-bar input,
+.search-bar select {
+  flex: 1;
+  min-width: 150px; /* Ensure inputs don't get too small */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff; /* Light background for inputs */
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+/* Focus state for inputs and select */
+.search-bar input:focus,
+.search-bar select:focus {
+  outline: none;
+  border-color: #007bff; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Placeholder text color */
+.search-bar input::placeholder {
+  color: #888;
+}
+
+/* Search button */
+.search-bar button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff; /* Blue button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between icon and text */
+  transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.search-bar button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Loading message */
+.search-page p {
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Book results list */
+.book-results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual book item */
+.book-results li {
+  padding: 12px;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
+}
+
+/* Hover effect for book items */
+.book-results li:hover {
+  background-color: #f8f9fa; /* Light gray background on hover */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .search-bar {
+    flex-direction: column; /* Stack inputs vertically */
+  }
+
+  .search-bar input,
+  .search-bar select,
+  .search-bar button {
+    width: 100%; /* Full width for inputs and button */
+    min-width: unset;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .search-page h2 {
+    color: #e0e0e0; /* Light text for dark theme */
+  }
+
+  .search-bar input,
+  .search-bar select {
+    background-color: #333; /* Dark background for inputs */
+    color: #e0e0e0;
+    border-color: #555;
+  }
+
+  .search-bar input::placeholder {
+    color: #aaa;
+  }
+
+  .search-page p {
+    color: #ccc;
+  }
+
+  .book-results li {
+    color: #e0e0e0;
+    border-bottom-color: #444;
+  }
+
+  .book-results li:hover {
+    background-color: #444; /* Darker hover effect */
+  }
+}
+
+/* src/components/SearchBooks/SearchBooks.css */
+
+/* src/components/SearchBooks/SearchBooks.css */
+
+/* Контейнер сторінки */
+.search-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Заголовок */
+.search-page h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Панель пошуку */
 .search-bar {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  align-items: center;
 }
 
+/* Поле введення пошуку */
 .search-bar input {
-  flex: 1;
-  padding: 10px 14px;
-  font-size: 1rem;
+  width: 200px; /* Зменшена ширина на 100px */
+  padding: 10px;
+  font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  text-align: center; /* Вирівнювання тексту по центру */
+  transition: width 0.3s ease, border-color 0.3s ease; /* Плавне розширення */
 }
 
-.search-bar button {
+/* Розширення при фокусі */
+.search-bar input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  width: 300px; /* Розширення до 300px при введенні тексту */
+}
+
+/* Плейсхолдер */
+.search-bar input::placeholder {
+  color: #888;
+  text-align: center; /* Вирівнювання плейсхолдера по центру */
+}
+
+/* Кнопки */
+.search-bar button,
+.filters button {
   padding: 10px 20px;
-  background-color: #4a90e2;
+  font-size: 16px;
+  background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 8px;
-  font-weight: 600;
+  border-radius: 4px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   transition: background-color 0.3s ease;
 }
 
-.search-bar button:hover {
-  background-color: #357ab8;
+/* Кнопка для перемикання фільтрів */
+.search-bar .filter-toggle {
+  background-color: #6c757d;
 }
 
+/* Ховер для кнопок */
+.search-bar button:hover,
+.filters button:hover {
+  background-color: #0056b3;
+}
+
+.search-bar .filter-toggle:hover {
+  background-color: #5a6268;
+}
+
+/* Блок фільтрів */
+.filters {
+  background-color: #f1f3f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  animation: slide-down 0.3s ease;
+}
+
+/* Анімація для плавної появи блоку фільтрів */
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Заголовок фільтрів */
+.filters h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 8px;
+}
+
+/* Група фільтрів */
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+/* Мітки фільтрів */
+.filter-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  min-width: 100px;
+}
+
+/* Поля введення та вибір у фільтрах */
+.filter-group input,
+.filter-group select {
+  width: 200px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+/* Фокус для полів фільтрів */
+.filter-group input:focus,
+.filter-group select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Плейсхолдер для полів фільтрів */
+.filter-group input::placeholder {
+  color: #888;
+}
+
+/* Кнопка "Застосувати фільтри" */
+.filters button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Список результатів */
 .book-results {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
+/* Елемент списку */
 .book-results li {
-  background: #fff;
-  padding: 12px 16px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 12px;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
+}
+
+/* Ховер для елементів списку */
+.book-results li:hover {
+  background-color: #f8f9fa;
+}
+
+/* Повідомлення про завантаження або відсутність книг */
+.search-page p {
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Адаптивність */
+@media (max-width: 600px) {
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar input,
+  .search-bar button {
+    width: 100%;
+  }
+
+  .filter-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-group label {
+    min-width: unset;
+  }
+
+  .filter-group input,
+  .filter-group select {
+    width: 100%;
+  }
+}
+
+/* Темна тема */
+@media (prefers-color-scheme: dark) {
+  .search-page h2,
+  .filters h3,
+  .filter-group label,
+  .book-results li {
+    color: #e0e0e0;
+  }
+
+  .search-bar input,
+  .filter-group input,
+  .filter-group select {
+    background-color: #333;
+    color: #e0e0e0;
+    border-color: #555;
+  }
+
+  .search-bar input::placeholder,
+  .filter-group input::placeholder {
+    color: #aaa;
+  }
+
+  .filters {
+    background-color: #2c2c2c;
+    border-color: #444;
+  }
+
+  .book-results li {
+    border-bottom-color: #444;
+  }
+
+  .book-results li:hover {
+    background-color: #444;
+  }
+
+  .search-page p {
+    color: #ccc;
+  }
 }

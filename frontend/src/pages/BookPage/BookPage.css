@@ -1,88 +1,73 @@
-
-.container {
-  max-width: 1000px;
-  margin: 50px auto;
-  padding: 30px 40px;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #222;
-  transition: box-shadow 0.3s ease;
-}
-.container:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+.books-page {
+  padding: 40px 20px 60px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
 }
 
+/* Заголовок */
 .title {
-  font-size: 2.5rem;
-  font-weight: 900;
-  margin-bottom: 30px;
-  color: #1a1a1a;
   text-align: center;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-}
-
-.bookImage {
-  display: block;
-  max-width: 400px;
-  width: 100%;
-  height: auto;
-  margin: 0 auto 30px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-.bookImage:hover {
-  transform: scale(1.05);
-}
-
-.infoRow {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  font-weight: 600;
-  font-size: 1.4rem;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 8px;
-  color: #444;
-}
-
-.infoLabel {
-  color: #777;
-  font-style: italic;
-}
-
-.description {
-  margin-top: 30px;
-  line-height: 1.7;
-  color: #555;
-  font-size: 1.4rem;
-  white-space: pre-line;
-  font-weight: 400;
-}
-
-
-.status {
-  font-weight: 700;
-  color: #28a745;
-  text-shadow: 0 0 5px #28a745aa;
-  transition: color 0.3s ease;
-}
-.status.outOfStock {
-  color: #dc3545;
-  text-shadow: 0 0 8px #dc3545cc;
-}
-
-.loading,
-.error {
-  max-width: 600px;
-  margin: 100px auto;
-  font-size: 1.8rem;
-  text-align: center;
-  color: #999;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  color: #222;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  user-select: none;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Пагінація */
+.pagination {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Кнопки пагінації */
+.pagination button {
+  background: linear-gradient(135deg, #4a90e2, #0077c2);
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
   font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(74, 144, 226, 0.4);
+  min-width: 120px;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #3b7dc4, #005fa3);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 119, 194, 0.5);
+}
+
+.pagination button:disabled {
+  background: #ddd;
+  color: #888;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Повідомлення про помилку */
+.error {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #c62828;
+  margin: 20px 0;
+}
+
+/* Повідомлення про завантаження */
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #333;
+  margin: 20px 0;
 }
