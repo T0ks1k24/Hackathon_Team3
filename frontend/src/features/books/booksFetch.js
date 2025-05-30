@@ -1,4 +1,4 @@
-const API_URL = "https://3.77.211.196:8000/api/books/book";
+const API_URL = "http://3.77.211.196/api/books/book";
 
 export const fetchBooks = async (page = 1) => {
   try {
