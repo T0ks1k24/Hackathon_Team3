@@ -22,6 +22,7 @@ html, body {
   width: 100%;
 }
 
+
 [data-theme="light"] {
   --background-color: #f5f7fa;
   --text-color: #1a1a1a;

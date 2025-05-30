@@ -1,63 +1,47 @@
-import CardList from '../../components/CardList/CardList.jsx';
-import './BooksPage.css';
+import React, { useEffect, useState } from 'react';
+import CardList from '../../components/CardList/CardList';
+import { fetchBooks } from '../../features/books/booksFetch';
 
-export default function BooksPage() {
-  const books = [
-    {
-      id: 1,
-      photo: 'https://static.yakaboo.ua/media/cloudflare/product/webp/352x340/c/o/cover_134567_25.jpg',
-      title: 'The Great Gatsby',
-      rating: 4.5,
-      price: 19.99,
-      stock: 12,
-    },
-    {
-      id: 2,
-      photo: 'https://static.yakaboo.ua/media/cloudflare/product/webp/352x340/1/_/1_1710.jpg',
-      title: '1984',
-      rating: 4.8,
-      price: 14.99,
-      stock: 0,
-    },
-    {
-      id: 3,
-      photo: 'https://static.yakaboo.ua/media/cloudflare/product/webp/352x340/8/0/80e1685978d971ca0cb2d34339bd437e.jpg',
-      title: 'To Kill a Mockingbird',
-      rating: 4.9,
-      price: 21.5,
-      stock: 5,
-    },
-    {
-      id: 4,
-      photo: 'https://static.yakaboo.ua/media/cloudflare/product/webp/352x340/8/0/80e1685978d971ca0cb2d34339bd437e.jpg',
-      title: 'To Kill a Mockingbird',
-      rating: 4.9,
-      price: 21.5,
-      stock: 5,
-    },
-    {
-      id: 5,
-      photo: 'https://static.yakaboo.ua/media/cloudflare/product/webp/352x340/8/0/80e1685978d971ca0cb2d34339bd437e.jpg',
-      title: 'To Kill a Mockingbird',
-      rating: 4.9,
-      price: 21.5,
-      stock: 5,
-    },
-    {
-      id: 6,
-      photo: 'https://static.yakaboo.ua/media/cloudflare/product/webp/352x340/8/0/80e1685978d971ca0cb2d34339bd437e.jpg',
-      title: 'To Kill a Mockingbird',
-      rating: 4.9,
-      price: 21.5,
-      stock: 5,
-    },
-    
-  ];
+export default function BookPage() {
+  const [books, setBooks] = useState([]);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    const loadBooks = async () => {
+      setLoading(true);
+      const data = await fetchBooks(page);
+      const formattedBooks = data.results.map(book => ({
+        id: book.id,
+        photo: book.image,
+        rating: book.rating || 0,
+        title: book.title,
+        price: book.price || 0,
+        stock: book.availability || 0,
+      }));
+      setBooks(formattedBooks);
+      setTotalPages(Math.ceil(data.count / 20)); // Adjust if PAGE_SIZE changes
+      setLoading(false);
+    };
+
+    loadBooks();
+  }, [page]);
+
+  const handlePrev = () => setPage(prev => Math.max(prev - 1, 1));
+  const handleNext = () => setPage(prev => Math.min(prev + 1, totalPages));
+
+  if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="books-page">
-      <h1 className="books-title">Books List</h1>
+    <div>
+      <h1>Книги</h1>
       <CardList books={books} />
+      <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
+        <button onClick={handlePrev} disabled={page === 1}>← Назад</button>
+        <span>Сторінка {page} з {totalPages}</span>
+        <button onClick={handleNext} disabled={page === totalPages}>Вперед →</button>
+      </div>
     </div>
   );
 }

@@ -17,6 +17,7 @@ export default function CardList({ books }) {
         {books.map((book) => (
           <li key={book.id} className="card-list-item">
             <Card
+              id={book.id}                
               photo={book.photo}
               rating={book.rating}
               title={book.title}
