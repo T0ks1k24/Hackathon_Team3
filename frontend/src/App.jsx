@@ -42,17 +42,17 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <PrivateRoute>
+                  // <PrivateRoute>
                     <ProfilePage />
-                  </PrivateRoute>
+                  // </PrivateRoute>
                 }
               />
               <Route
                 path="/books"
                 element={
-                  <PrivateRoute>
+                  // <PrivateRoute>
                     <BooksPage />
-                  </PrivateRoute>
+                  // </PrivateRoute>
                 }
               />
               <Route

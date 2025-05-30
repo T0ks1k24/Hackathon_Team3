@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CardList from '../../components/CardList/CardList';
 import { fetchBooks } from '../../features/books/booksFetch';
+import './BooksPage.css'
 
 export default function BookPage() {
   const [books, setBooks] = useState([]);
@@ -21,7 +22,7 @@ export default function BookPage() {
         stock: book.availability || 0,
       }));
       setBooks(formattedBooks);
-      setTotalPages(Math.ceil(data.count / 20)); // Adjust if PAGE_SIZE changes
+      setTotalPages(Math.ceil(data.count / 20)); 
       setLoading(false);
     };
 
@@ -35,9 +36,11 @@ export default function BookPage() {
 
   return (
     <div>
-      <h1>Книги</h1>
+      <div className="title-div">
+      <h1 className="title">Книги</h1>
+      </div>
       <CardList books={books} />
-      <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
+      <div className="button">
         <button onClick={handlePrev} disabled={page === 1}>← Назад</button>
         <span>Сторінка {page} з {totalPages}</span>
         <button onClick={handleNext} disabled={page === totalPages}>Вперед →</button>

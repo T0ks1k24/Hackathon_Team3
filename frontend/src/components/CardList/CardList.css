@@ -29,12 +29,3 @@
   font-size: 1.2rem;
   color: var(--section-text);
 }
-
-@media (max-width: 768px) {
-  .card-list {
-    gap: 16px;
-  }
-  .card-list-empty {
-    padding: 20px;
-  }
-}

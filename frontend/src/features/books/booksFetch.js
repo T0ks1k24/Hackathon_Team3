@@ -27,3 +27,17 @@ export const fetchBookById = async (id) => {
     return null;
   }
 };
+
+export async function fetchBooksBySearch(searchTerm) {
+  try {
+    const response = await fetch(`${API_URL}?search=${encodeURIComponent(searchTerm)}`);
+    if (!response.ok) {
+      throw new Error("Помилка при завантаженні книг");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Помилка:", error);
+    return [];
+  }
+}
