@@ -6,8 +6,5 @@ env/
 # Node (React)
 node_modules/
 build/
+.env
 
-# workflows
-./django.yml
-./react.yml
-./devops.yml
