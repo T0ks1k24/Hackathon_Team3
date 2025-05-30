@@ -1,13 +1,71 @@
-h1 {
-  text-align: center;
-  margin-top: 30px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #222;
-  font-weight: 700;
+.books-page {
+  padding: 40px 20px 60px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
 }
 
-div {
-  margin: 0 auto;
-  padding: 0 20px 40px;
-  background-color: #fefefe;
+/* Заголовок */
+.title-book {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  color: #222;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Пагінація */
+.pagination {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Кнопки */
+/* Контейнер кнопок */
+.button {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Кнопки */
+.button button {
+  background: linear-gradient(135deg, #4a90e2, #0077c2);
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(74, 144, 226, 0.4);
+  min-width: 120px;
+}
+
+.button button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #3b7dc4, #005fa3);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 119, 194, 0.5);
+}
+
+.button button:disabled {
+  background: #ddd;
+  color: #888;
+  cursor: not-allowed;
+  box-shadow: none;
 }

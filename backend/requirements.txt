@@ -4,12 +4,8 @@ sqlparse==0.5.3
 tzdata==2025.2
 psycopg2-binary
 django-filter
-
+djangorestframework-simplejwt
 django-cors-headers
 requests>=2.31.0
 beautifulsoup4>=4.12.3
 python-dotenv
-
-djangorestframework-simplejwt
-django-cors-headers
-

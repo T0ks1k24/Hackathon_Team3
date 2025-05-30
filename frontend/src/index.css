@@ -1,12 +1,60 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.animate-fadeIn {
-  animation: fadeIn 1s ease forwards;
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Merriweather', 'Segoe UI', 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+
+[data-theme="light"] {
+  --background-color: #f5f7fa;      
+  --text-color: #1a1a1a;              
+  --header-bg: #ffffff;            
+  --header-text: #333333;             
+  --header-hover: #0077cc;           
+  --footer-bg: #eaeaea;              
+  --footer-text: #555555;            
+  --section-bg: #ffffff;             
+  --section-text: #444444;            
+  --section-heading: #222222;         
+  --section-shadow: rgba(0, 0, 0, 0.06);       
+  --section-shadow-hover: rgba(0, 0, 0, 0.12); 
+}
+
+
+[data-theme="dark"] {
+  --background-color: #121212;        
+  --text-color: #f0f0f0;              
+  --header-bg: #1e1e1e;               
+  --header-text: #ffffff;             
+  --header-hover: #33c4ff;            
+  --footer-bg: #1a1a1a;              
+  --footer-text: #cccccc;             
+  --section-bg: #1c1c1c;             
+  --section-text: #dddddd;          
+  --section-heading: #ffffff;       
+  --section-shadow: rgba(255, 255, 255, 0.04);      
+  --section-shadow-hover: rgba(255, 255, 255, 0.08); 
+}
+
+
+html, body {
+  background: var(--background-color);
+  color: var(--text-color);
 }
