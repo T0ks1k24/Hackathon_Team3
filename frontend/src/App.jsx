@@ -10,7 +10,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import BookPage from "./pages/BookPage/BookPage";
 import PrivateRoute from "./security/PrivateRoute";
 import PublicRoute from "./security/PublicRoute";
-import AdminPage from "./admin/AdminPage";
+import AdminPage from "./pages/AdminPage/AdminPage";
 import "./App.css";
 
 function App() {
@@ -34,6 +34,15 @@ function App() {
                   </PublicRoute>
                 }
               />
+
+              <Route
+                path="/admin"
+                element={
+                  <PrivateRoute requiredRole="admin">
+                    <AdminPage />
+                  </PrivateRoute>
+                }
+              />
               <Route
                 path="/login"
                 element={
@@ -55,14 +64,6 @@ function App() {
                 element={
                   <PrivateRoute>
                     <BooksPage />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/admin"
-                element={
-                  <PrivateRoute>
-                    <AdminPage />
                   </PrivateRoute>
                 }
               />
