@@ -85,10 +85,29 @@ function AdminPage() {
           Посилання на зображення:
           <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} required />
         </label>
-        <label>
-          Опис:
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
-        </label>
+        <label style={{ display: 'block', marginBottom: 8, fontWeight: '600', color: '#333' }}>
+  Опис:
+  <textarea
+    value={description}
+    onChange={(e) => setDescription(e.target.value)}
+    required
+    style={{
+      width: '100%',
+      minHeight: '120px',
+      padding: '10px',
+      borderRadius: '8px',
+      border: '1.5px solid #ccc',
+      fontSize: '16px',
+      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+      resize: 'vertical',
+      boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+      transition: 'border-color 0.3s ease',
+      marginTop: '6px',
+    }}
+    onFocus={(e) => e.target.style.borderColor = '#007BFF'}
+    onBlur={(e) => e.target.style.borderColor = '#ccc'}
+  />
+</label>
         <label>
           Рік:
           <input type="number" value={year} onChange={(e) => setYear(e.target.value)} required />
