@@ -67,7 +67,7 @@ class ImportBooksView(APIView):
                 count_updated += 1
 
         return Response({
-            'message': '✅ Імпорт завершено',
+            'message': 'Імпорт завершено',
             'created': count_new,
             'updated': count_updated,
             'total': count_new + count_updated
