@@ -160,6 +160,25 @@ def get_book_links_from_genre(genre_url):
 
     return book_links
 
+def scrape_books():
+    all_book_urls = []
+    genre_links = get_genres()
+
+    for genre_name, genre_url in genre_links:
+        book_urls = get_book_links_from_genre(genre_url)
+        all_book_urls.extend([(url, genre_name) for url in book_urls])
+
+    books = []
+
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = [executor.submit(fetch_book, url, genre) for url, genre in all_book_urls]
+        for future in as_completed(futures):
+            book_data = future.result()
+            if book_data:
+                books.append(book_data)
+
+    return books
+
 def main():
     all_book_urls = []
     genre_links = get_genres()
