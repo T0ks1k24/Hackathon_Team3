@@ -1,14 +1,16 @@
 const API_URL = "http://3.77.211.196/api/books/book";
 
+// 📚 GET ALL BOOKS
 export const fetchBooks = async (page = 1) => {
   try {
     const params = new URLSearchParams({ page });
     const response = await fetch(`${API_URL}?${params.toString()}`);
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = JSON.parse(text);
+    const data = await response.json(); // ✅ FIX
     return data;
   } catch (error) {
     console.error("Error fetching books:", error);
@@ -16,6 +18,7 @@ export const fetchBooks = async (page = 1) => {
   }
 };
 
+// 📘 GET BOOK BY ID
 export const fetchBookById = async (id) => {
   try {
     const response = await fetch(`${API_URL}/${id}/`);
@@ -27,7 +30,7 @@ export const fetchBookById = async (id) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = JSON.parse(text);
+    const data = JSON.parse(text); // або response.json(), якщо не треба лог raw
     return data;
   } catch (error) {
     console.error(`Error fetching book with ID ${id}:`, error);
@@ -35,6 +38,7 @@ export const fetchBookById = async (id) => {
   }
 };
 
+// 🔎 SEARCH
 export async function fetchBooksBySearch(searchTerm, page = 1) {
   try {
     const params = new URLSearchParams({
@@ -42,11 +46,12 @@ export async function fetchBooksBySearch(searchTerm, page = 1) {
       page,
     });
     const response = await fetch(`${API_URL}?${params.toString()}`);
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = JSON.parse(text);
+    const data = await response.json(); // ✅ FIX
     return data;
   } catch (error) {
     console.error("Помилка при пошуку книг:", error);
@@ -54,16 +59,19 @@ export async function fetchBooksBySearch(searchTerm, page = 1) {
   }
 }
 
+// 🎭 FILTER BY GENRE
 export async function fetchBooksByGenre(genre, page = 1) {
   try {
     const params = new URLSearchParams({
-      genre: encodeURIComponent(genre),
+      genre: genre, // не треба encodeURIComponent тут, URLSearchParams вже кодує
       page,
     });
     const response = await fetch(`${API_URL}?${params.toString()}`);
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
+
     const data = await response.json();
     return data;
   } catch (error) {
