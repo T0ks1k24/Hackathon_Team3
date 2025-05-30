@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './admin.css';
 
 function AdminPage() {
@@ -9,8 +9,24 @@ function AdminPage() {
   const [year, setYear] = useState('');
   const [upsCode, setUpsCode] = useState('');
   const [genre, setGenre] = useState('');
+  const [genres, setGenres] = useState([]);
   const [availability, setAvailability] = useState('available');
-  
+  const [quantity, setQuantity] = useState('');
+
+  useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+        const response = await fetch('http://3.77.211.196/api/books/genres/');
+        const data = await response.json();
+        setGenres(data.results);
+      } catch (error) {
+        console.error('Помилка при завантаженні жанрів:', error);
+      }
+    };
+
+    fetchGenres();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -23,6 +39,7 @@ function AdminPage() {
       ups_code: upsCode,
       genre,
       availability,
+      quantity,
     };
 
     try {
@@ -34,6 +51,7 @@ function AdminPage() {
 
       if (response.ok) {
         alert('Книгу додано!');
+        // Очистити форму
         setTitle('');
         setPrice('');
         setImageUrl('');
@@ -42,6 +60,7 @@ function AdminPage() {
         setUpsCode('');
         setGenre('');
         setAvailability('available');
+        setQuantity('');
       } else {
         alert('Помилка при додаванні книги');
       }
@@ -80,11 +99,16 @@ function AdminPage() {
         </label>
         <label>
           Жанр:
-          <input type="text" value={genre} onChange={(e) => setGenre(e.target.value)} required />
+          <select value={genre} onChange={(e) => setGenre(e.target.value)} required>
+            <option value="">Оберіть жанр</option>
+            {genres.map((g) => (
+              <option key={g.id} value={g.name}>{g.name}</option>
+            ))}
+          </select>
         </label>
         <label>
           Кількість книг:
-          <input type="number" value={year} onChange={(e) => setYear(e.target.value)} required />
+          <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} required />
         </label>
         <button type="submit">Додати</button>
       </form>
