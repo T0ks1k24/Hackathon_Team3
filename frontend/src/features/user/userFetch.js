@@ -1,4 +1,4 @@
-const API_URL = "http://3.77.211.196:8000/api";
+const API_URL = "http://localhost:8000/api";
 
 
 export async function loginUser({ email, password }) {
