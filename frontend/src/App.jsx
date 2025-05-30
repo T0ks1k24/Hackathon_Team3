@@ -8,7 +8,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import BookPage from "./pages/BookPage/BookPage";
-import PrivateRoute from "./security/PrivateRoute";
+// import PrivateRoute from "./security/PrivateRoute";
 import PublicRoute from "./security/PublicRoute";
 import AdminPage from "./admin/AdminPage";
 import "./App.css";
