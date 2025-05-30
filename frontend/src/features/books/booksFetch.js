@@ -2,7 +2,7 @@ const API_URL = "http://3.77.211.196/api/books/book";
 
 export const fetchBooks = async (page = 1) => {
   try {
-    const response = await fetch(`${API_URL}?page=${page}`);
+    const response = await fetch(`${API_URL}`);
 
     const text = await response.text();
     console.log("RAW response fetchBooks:", text);
