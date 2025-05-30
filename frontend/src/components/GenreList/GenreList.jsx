@@ -7,7 +7,7 @@ export default function GenreList({ onSelectGenre, selectedGenre }) {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/books/genres/');
+        const response = await fetch('http://3.77.211.196/api/books/genres/');
         const data = await response.json();
         setGenres(data.results); 
       } catch (error) {
