@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import CardList from '../../components/CardList/CardList';
-import GenreList from '../../components/GenreList/GenreList';
 import SearchBooks from '../../components/SearchBooks/SearchBooks';
 import { fetchBooks, fetchBooksBySearch, fetchBooksByGenre } from '../../features/books/booksFetch';
 import './BooksPage.css';
@@ -52,21 +51,12 @@ export default function BookPage() {
     setPage(1);
   };
 
-  const handleGenreSelect = (genre) => {
-    setSelectedGenre(genre);
-    setSearchQuery('');
-    setPage(1);
-  };
-
   return (
     <div className="books-page">
       <div className="title-div">
         <h1 className="title">Книги</h1>
         <SearchBooks onSearch={handleSearch} />
       </div>
-
-      <GenreList onSelectGenre={handleGenreSelect} selectedGenre={selectedGenre} />
-
       {loading ? (
         <p className="loading">Завантаження...</p>
       ) : (
