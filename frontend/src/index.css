@@ -22,9 +22,6 @@ html, body {
 }
 
 
-  margin: 0;
-}
-
 [data-theme="light"] {
   --background-color: #f5f7fa;      
   --text-color: #1a1a1a;              
