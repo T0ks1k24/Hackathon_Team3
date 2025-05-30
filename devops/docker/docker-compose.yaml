@@ -47,10 +47,8 @@ services:
     ports:
       - "80:80"
     volumes:
-       - ./frontend/build:/usr/share/nginx/html:ro
-       - ./devops/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      - backend
+       - ../../frontend/build:/usr/share/nginx/html:ro
+       - ../nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - backend
     restart: always
