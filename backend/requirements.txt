@@ -9,3 +9,9 @@ django-cors-headers
 requests>=2.31.0
 beautifulsoup4>=4.12.3
 python-dotenv
+
+djangorestframework-simplejwt
+django-cors-headers
+drf-yasg
+pandas
+XlsxWriter
