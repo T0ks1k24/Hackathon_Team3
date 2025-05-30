@@ -7,6 +7,8 @@ services:
       - ../../backend:/app
     environment:
       - DEBUG=1
+    ports:
+      - "8000:8000"
     networks:
       - app-network
     depends_on:
