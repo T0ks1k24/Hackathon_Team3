@@ -11,15 +11,17 @@
   flex-direction: column;
   background: var(--background-color);
   color: var(--text-color);
+  width: 100%;
+  min-height: 100vh;
 }
 
 .homepage-header {
-  background: linear-gradient(135deg, #8e8d8a, #c9c5ba); /* Залишаємо градієнт, оскільки він специфічний */
+  background: linear-gradient(135deg, #8e8d8a, #c9c5ba);
   color: #ffffff;
   padding: 4rem 2rem;
   text-align: center;
   box-shadow: 0 4px 12px var(--section-shadow);
-  width: 100vw;
+  width: 100%;
 }
 
 .homepage-header h1 {
@@ -34,10 +36,11 @@
 
 .homepage-content {
   flex: 1;
-  padding: 3rem 2rem;
+  padding: 3rem 2rem 10rem; /* Збільшено padding-bottom до 10rem */
   max-width: 900px;
   margin: 0 auto;
   width: 100%;
+  min-height: calc(100vh - 300px); /* Зменшено для врахування хедера (~200px) і футера (~100px) */
 }
 
 .homepage-section {
@@ -47,6 +50,10 @@
   padding: 2rem;
   box-shadow: 0 6px 20px var(--section-shadow);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.homepage-section:last-child {
+  margin-bottom: 4rem; /* Додано додатковий відступ для останньої секції */
 }
 
 .homepage-section:hover {
@@ -75,4 +82,35 @@
 
 .homepage-section li {
   margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .homepage-header {
+    padding: 2rem 1rem;
+  }
+  .homepage-header h1 {
+    font-size: 2rem;
+  }
+  .homepage-header p {
+    font-size: 1.1rem;
+  }
+  .homepage-content {
+    padding: 2rem 1rem 8rem; 
+    min-height: calc(100vh - 200px); 
+  }
+  .homepage-section {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .homepage-section:last-child {
+    margin-bottom: 3rem;
+  }
+  .homepage-section h2 {
+    font-size: 1.4rem;
+  }
+  .homepage-section p,
+  .homepage-section ul,
+  .homepage-section ol {
+    font-size: 1rem;
+  }
 }

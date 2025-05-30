@@ -3,12 +3,12 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 40px 20px;
+  padding: 40px 20px 6rem; /* Додано padding-bottom для футера */
   background-color: var(--background-color);
   color: var(--text-color);
   box-sizing: border-box;
   max-width: 100%;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
 .books-title {
@@ -22,7 +22,7 @@
 
 @media (max-width: 768px) {
   .books-page {
-    padding: 20px 10px;
+    padding: 20px 10px 5rem; /* Зменшено padding-bottom для малих екранів */
   }
   .books-title {
     font-size: 24px;
