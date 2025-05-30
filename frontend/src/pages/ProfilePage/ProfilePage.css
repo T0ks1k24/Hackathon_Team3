@@ -1,0 +1,71 @@
+.profile-container {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.profile-container:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.profile-info p {
+  font-size: 18px;
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+.profile-info strong {
+  display: inline-block;
+  width: 180px;
+  color: #555;
+}
+
+.logout-button {
+  margin-top: 30px;
+  width: 100%;
+  padding: 14px 20px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+}
+
+/* Badge для ролі */
+.profile-info .role-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: white;
+  background-color: #3498db;
+}
+
+.profile-info .role-badge.admin {
+  background-color: #2ecc71;
+}
+
+.profile-info .role-badge.user {
+  background-color: #95a5a6;
+}
