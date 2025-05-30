@@ -2,7 +2,7 @@ const API_URL = "http://3.77.211.196/api";
 
 
 export async function loginUser({ email, password }) {
-  const response = await fetch(`${API_URL}/users/login/`, {
+  const response = await fetch(`${API_URL}/users/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
