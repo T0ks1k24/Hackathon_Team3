@@ -55,7 +55,9 @@ export default function BookPage() {
     <div className="books-page">
       <div className="title-div">
         <h1 className="title">Книги</h1>
-        <SearchBooks onSearch={handleSearch} />
+      </div>
+      <div>
+                <SearchBooks onSearch={handleSearch} />
       </div>
       {loading ? (
         <p className="loading">Завантаження...</p>

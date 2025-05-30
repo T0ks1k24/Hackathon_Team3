@@ -1,71 +1,65 @@
 .books-page {
-  padding: 40px 20px 60px;
-  background-color: #f5f7fa;
-  min-height: 100vh;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Заголовок */
-.title-book {
-  text-align: center;
-  font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 40px;
+.title-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #eee;
+}
+
+.title {
+  font-size: 2.5rem;
   color: #222;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  text-align: center;
 }
 
-/* Пагінація */
+
+.loading {
+  font-size: 1.4rem;
+  text-align: center;
+  color: #555;
+  margin-top: 3rem;
+}
+
 .pagination {
-  margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #333;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
-/* Кнопки */
-/* Контейнер кнопок */
-.button {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #333;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Кнопки */
-.button button {
-  background: linear-gradient(135deg, #4a90e2, #0077c2);
+.pagination button {
+  background-color: #007bff;
   color: #fff;
-  padding: 12px 24px;
+  padding: 0.6rem 1.2rem;
   border: none;
-  border-radius: 50px;
+  border-radius: 8px;
   font-size: 1rem;
-  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 14px rgba(74, 144, 226, 0.4);
-  min-width: 120px;
+  transition: background-color 0.3s ease;
 }
 
-.button button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #3b7dc4, #005fa3);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0, 119, 194, 0.5);
+.pagination button:hover:not(:disabled) {
+  background-color: #0056b3;
 }
 
-.button button:disabled {
-  background: #ddd;
-  color: #888;
+.pagination button:disabled {
+  background-color: #cccccc;
   cursor: not-allowed;
-  box-shadow: none;
+}
+
+.pagination span {
+  font-size: 1.1rem;
+  color: #333;
 }
