@@ -1,7 +1,7 @@
 // SearchBooks.jsx
 
 import React, { useState } from 'react';
-import { fetchBooksBySearch } from './booksFetch';
+import { fetchBooksBySearch } from '../../features/books/booksFetch';
 
 export default function SearchBooks() {
   const [query, setQuery] = useState('');

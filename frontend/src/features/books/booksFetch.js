@@ -41,3 +41,8 @@ export async function fetchBooksBySearch(searchTerm) {
     return [];
   }
 }
+
+export async function fetchBooksByGenre(genre, page = 1) {
+  const res = await fetch(`${API_URL}?genre=${genre}&page=${page}`);
+  return await res.json();
+}
