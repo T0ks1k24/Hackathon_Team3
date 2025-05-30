@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import debounce from 'lodash.debounce';
 import './SearchBooks.css';
 
@@ -13,19 +13,10 @@ export default function SearchBooks({ onSearch }) {
   const [showFilters, setShowFilters] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
 
-  const debouncedSearch = useCallback(
-    debounce((searchQuery) => {
-      if (searchQuery.trim()) {
-        onSearch(searchQuery);
-        handleSearch();
-      }
-    }, 500),
-    []
-  );
-
-  const handleSearch = async () => {
+  const handleSearch = useCallback(async () => {
     setLoading(true);
     setHasSearched(true);
+
     const params = new URLSearchParams();
     if (query) params.append('search', query);
     if (genre) params.append('genre', genre);
@@ -46,7 +37,16 @@ export default function SearchBooks({ onSearch }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [query, genre, yearGte, yearLte, ordering]);
+
+  const debouncedSearch = useMemo(() =>
+    debounce((searchQuery) => {
+      if (searchQuery.trim()) {
+        onSearch(searchQuery);
+        handleSearch();
+      }
+    }, 500), [onSearch, handleSearch]
+  );
 
   const handleQueryChange = (e) => {
     const newQuery = e.target.value;
