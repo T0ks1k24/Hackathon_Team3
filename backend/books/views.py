@@ -11,6 +11,7 @@ from parsing.ParsingBook import scrape_books
 import pandas as pd
 from django.http import HttpResponse
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.pagination import PageNumberPagination
 
 
 
@@ -19,10 +20,16 @@ class GenreListCreateView(generics.ListCreateAPIView):
     serializer_class = GenreSerializer
     permission_classes = [IsAdminOrReadOnly]
 
+    
+class BookPagination(PageNumberPagination):
+    page_size = 20
+
 class BookListCreateView(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    pagination_class = BookPagination
     permission_classes = [IsAdminOrReadOnly]
+    
 
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = {
@@ -36,6 +43,8 @@ class BookRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookDetailSerializer
     permission_classes = [IsAdminOrReadOnly]
+
+
 
 class ImportBooksView(APIView):
     permission_classes = [IsAdminUser]
