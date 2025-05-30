@@ -5,7 +5,12 @@ function AdminPage() {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [imageUrl, setImageUrl] = useState('');
-
+  const [description, setDescription] = useState('');
+  const [year, setYear] = useState('');
+  const [upsCode, setUpsCode] = useState('');
+  const [genre, setGenre] = useState('');
+  const [availability, setAvailability] = useState('available');
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -13,6 +18,11 @@ function AdminPage() {
       title,
       price,
       image_url: imageUrl,
+      description,
+      year,
+      ups_code: upsCode,
+      genre,
+      availability,
     };
 
     try {
@@ -27,6 +37,11 @@ function AdminPage() {
         setTitle('');
         setPrice('');
         setImageUrl('');
+        setDescription('');
+        setYear('');
+        setUpsCode('');
+        setGenre('');
+        setAvailability('available');
       } else {
         alert('Помилка при додаванні книги');
       }
@@ -50,6 +65,26 @@ function AdminPage() {
         <label>
           Посилання на зображення:
           <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} required />
+        </label>
+        <label>
+          Опис:
+          <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
+        </label>
+        <label>
+          Рік:
+          <input type="number" value={year} onChange={(e) => setYear(e.target.value)} required />
+        </label>
+        <label>
+          Код UPS:
+          <input type="text" value={upsCode} onChange={(e) => setUpsCode(e.target.value)} required />
+        </label>
+        <label>
+          Жанр:
+          <input type="text" value={genre} onChange={(e) => setGenre(e.target.value)} required />
+        </label>
+        <label>
+          Кількість книг:
+          <input type="number" value={year} onChange={(e) => setYear(e.target.value)} required />
         </label>
         <button type="submit">Додати</button>
       </form>

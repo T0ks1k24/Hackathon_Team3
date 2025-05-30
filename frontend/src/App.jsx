@@ -10,7 +10,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import BookPage from "./pages/BookPage/BookPage";
 // import PrivateRoute from "./security/PrivateRoute";
 import PublicRoute from "./security/PublicRoute";
-import AdminPage from "./admin/AdminPage";
+import AdminPage from "./pages/adminPage/AdminPage";
 import "./App.css";
 
 function App() {
