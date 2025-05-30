@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import debounce from 'lodash.debounce';
 import CardList from '../../components/CardList/CardList';
-import GenreList from '../../components/GenreList/GenreList';
 import SearchBooks from '../../components/SearchBooks/SearchBooks';
 import { fetchBooks, fetchBooksBySearch, fetchBooksByGenre } from '../../features/books/booksFetch';
-import './BookPage.css'; // Змінено імпорт на правильну назву файлу
+import './BookPage.css';
 
 export default function BookPage() {
   const [books, setBooks] = useState([]);
@@ -15,52 +14,58 @@ export default function BookPage() {
   const [selectedGenre, setSelectedGenre] = useState('');
   const [error, setError] = useState(null);
 
-  const debouncedFetchBooks = useCallback(
-    debounce(async (query, genre, page) => {
-      if (!query.trim() && !genre && page === 1) {
-        setBooks([]);
-        setTotalPages(1);
-        setLoading(false);
-        return;
-      }
-      setLoading(true);
-      setError(null);
-      try {
-        let data;
-        if (query.trim()) {
-          data = await fetchBooksBySearch(query, page);
-        } else if (genre) {
-          data = await fetchBooksByGenre(genre, page);
-        } else {
-          data = await fetchBooks(page);
-        }
+  // Основна функція для фетчу
+  const loadBooks = async (query, genre, currentPage) => {
+    if (!query.trim() && !genre && currentPage === 1) {
+      setBooks([]);
+      setTotalPages(1);
+      setLoading(false);
+      return;
+    }
 
-        const formattedBooks = (data.results || data).map(book => ({
-          id: book.id,
-          photo: book.image,
-          rating: book.rating || 0,
-          title: book.title,
-          price: book.price || 0,
-          stock: book.availability || 0,
-        }));
-
-        setBooks(formattedBooks);
-        setTotalPages(Math.ceil((data.count || 0) / 20));
-      } catch (err) {
-        console.error('Помилка завантаження книг:', err);
-        setError('Не вдалося завантажити книги. Спробуйте ще раз.');
-        setBooks([]);
-      } finally {
-        setLoading(false);
+    setLoading(true);
+    setError(null);
+    try {
+      let data;
+      if (query.trim()) {
+        data = await fetchBooksBySearch(query, currentPage);
+      } else if (genre) {
+        data = await fetchBooksByGenre(genre, currentPage);
+      } else {
+        data = await fetchBooks(currentPage);
       }
-    }, 500),
-    []
-  );
+
+      const formattedBooks = Array.isArray(data.results || data)
+        ? (data.results || data).map(book => ({
+            id: book.id,
+            photo: book.image,
+            rating: book.rating || 0,
+            title: book.title,
+            price: book.price || 0,
+            stock: book.availability || 0,
+          }))
+        : [];
+
+      setBooks(formattedBooks);
+      setTotalPages(Math.ceil((data.count || 0) / 20));
+    } catch (err) {
+      console.error('Помилка завантаження книг:', err);
+      setError('Не вдалося завантажити книги. Спробуйте ще раз.');
+      setBooks([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Debounce-обгортка, мемоізована
+  const debouncedLoadBooks = useMemo(() => debounce(loadBooks, 500), []);
 
   useEffect(() => {
-    debouncedFetchBooks(searchQuery, selectedGenre, page);
-    return () => debouncedFetchBooks.cancel();
-  }, [searchQuery, selectedGenre, page, debouncedFetchBooks]);
+    debouncedLoadBooks(searchQuery, selectedGenre, page);
+    return () => {
+      debouncedLoadBooks.cancel();
+    };
+  }, [searchQuery, selectedGenre, page, debouncedLoadBooks]); // тепер ESLint задоволений
 
   const handlePrev = () => setPage(prev => Math.max(prev - 1, 1));
   const handleNext = () => setPage(prev => Math.min(prev + 1, totalPages));
@@ -71,12 +76,6 @@ export default function BookPage() {
     setPage(1);
   };
 
-  const handleGenreSelect = (genre) => {
-    setSelectedGenre(genre);
-    setSearchQuery('');
-    setPage(1);
-  };
-
   return (
     <div className="books-page">
       <div className="title-div">
@@ -84,9 +83,8 @@ export default function BookPage() {
         <SearchBooks onSearch={handleSearch} />
       </div>
 
-      <GenreList onSelectGenre={handleGenreSelect} selectedGenre={selectedGenre} />
-
       {error && <p className="error">{error}</p>}
+
       {loading ? (
         <p className="loading">Завантаження...</p>
       ) : (
