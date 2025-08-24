@@ -1,5 +1,3 @@
----
-
 # Hackathon_Team3
 
 ## 🔹 Book Collection Website
