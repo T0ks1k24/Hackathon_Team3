@@ -6,9 +6,9 @@
 
 This is a web application for convenient book search and browsing. The site allows users to:
 
-* 🔐 Authenticate (login/register)
-* 📖 View books
-* 🔍 Search books by title
+🔐 Authenticate (login/register)
+📖 View books
+🔍 Search books by title
 
 ---
 
