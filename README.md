@@ -148,43 +148,6 @@ Authorization: Bearer <your_access_token>
 
 ---
 
-## 🗂️ Project Structure
-
-```
-Hackathon_Team3/
-│
-├── backend/          # Django backend
-│ ├── backend/        # Django project configuration
-│ ├── books/          # Books app (models, views, urls)
-│ ├── users/          # Users/authentication app
-│ ├── parsing/        # Book parser
-│ ├── Dockerfile      # Backend Dockerfile
-│ ├── requirements.txt
-│ └── manage.py
-│
-├── frontend/         # React frontend
-│ ├── public/
-│ ├── src/
-│ │ ├── components/   # Reusable React components
-│ │ ├── pages/        # Pages (Home, Login, Register, Books, etc.)
-│ │ ├── features/     # API requests, redux logic
-│ │ ├── security/     # JWT decoding, Private/Public routes
-│ │ ├── setting/      # Theme switch
-│ │ ├── App.js
-│ │ └── index.js
-│ ├── package.json
-│ ├── package-lock.json
-│ └── Dockerfile
-│
-├── devops/           
-│ ├── docker/         # docker-compose, envs, scripts
-│ └── nginx/          # nginx.conf
-│
-└── README.md
-```
-
----
-
 ## 🧠 Conclusions / Next Steps
 
 🔚 Our site is not yet a full-fledged library, but it’s no longer just a notebook hack. In 4 days we built working authentication, book search, a catalog, and UI — and that’s already a **victory** (small “v”, bold font).
